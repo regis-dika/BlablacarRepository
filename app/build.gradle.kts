@@ -66,4 +66,7 @@ dependencies {
 
     //Moshi
     implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
+
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
 }

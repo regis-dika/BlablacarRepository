@@ -1,6 +1,6 @@
 package com.example.newblablacar.tripseach.di
 
-import com.example.newblablacar.tripseach.data.api.TripSearchApi
+import com.example.newblablacar.tripseach.data.remote.TripSearchApi
 import com.example.newblablacar.tripseach.utils.TRIP_SEARCH_URL
 import dagger.Module
 import dagger.Provides

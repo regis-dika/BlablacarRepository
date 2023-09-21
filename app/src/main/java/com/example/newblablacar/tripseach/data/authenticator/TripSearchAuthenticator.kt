@@ -3,6 +3,8 @@ package com.example.newblablacar.tripseach.data.authenticator
 import android.content.SharedPreferences
 import com.example.newblablacar.authentication.utils.ACCESS_TOKEN_KEY
 import com.example.newblablacar.authentication.utils.AuthorizationResult
+import com.example.newblablacar.core.authorization.usescase.GetRefreshTokenUseCase
+import kotlinx.coroutines.runBlocking
 import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response
@@ -19,15 +21,17 @@ class TripSearchAuthenticator @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
-        val authorizeResult = getRefreshTokenUseCase.invoke()
-        val refreshToken = sharedPreferences.getString(ACCESS_TOKEN_KEY, null)
-        //TODO handle error or failed step
-        return if (authorizeResult is AuthorizationResult.Authorize && refreshToken != null) {
-            response.request().newBuilder()
-                .header("Authorization", refreshToken)
-                .build()
-        } else {
-            null
+        return runBlocking {
+            val authorizeResult = getRefreshTokenUseCase.invoke()
+            val refreshToken = sharedPreferences.getString(ACCESS_TOKEN_KEY, null)
+            //TODO handle error or failed step
+            if (authorizeResult is AuthorizationResult.Authorize && refreshToken != null) {
+                response.request().newBuilder()
+                    .header("Authorization", refreshToken)
+                    .build()
+            } else {
+                null
+            }
         }
     }
 }

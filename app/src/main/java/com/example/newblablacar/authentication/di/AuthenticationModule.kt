@@ -1,5 +1,7 @@
 package com.example.newblablacar.authentication.di
 
+import android.app.Application
+import android.content.Context.MODE_PRIVATE
 import com.example.newblablacar.authentication.data.AuthenticationApi
 import com.example.newblablacar.authentication.utils.TOKEN_URL
 import com.squareup.moshi.Moshi
@@ -30,4 +32,9 @@ object AuthenticationModule {
     fun provideMoshi() = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
+
+    @Singleton
+    @Provides
+    fun provideSharedPreference(application: Application) =
+        application.getSharedPreferences("sharedPrefs", MODE_PRIVATE)
 }

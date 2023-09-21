@@ -3,6 +3,7 @@ package com.example.newblablacar.authentication.data
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.example.newblablacar.authentication.domain.AuthenticationRepository
+import com.example.newblablacar.authentication.utils.ACCESS_TOKEN_KEY
 import com.example.newblablacar.authentication.utils.AuthorizationResult
 import com.example.newblablacar.authentication.utils.tokenParams
 import javax.inject.Inject
@@ -18,7 +19,7 @@ class AuthenticationRepositoryImpl @Inject constructor(
         return try {
             val result = authenticationApi.getToken(tokenParams)
             sharedPreferences.edit {
-                putString("accessToken", result.accessToken).commit()
+                putString(ACCESS_TOKEN_KEY, result.accessToken).commit()
             }
             AuthorizationResult.Authorize
         } catch (e: Exception) {

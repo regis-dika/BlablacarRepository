@@ -27,7 +27,7 @@ class TripSearchAuthenticator @Inject constructor(
             //TODO handle error or failed step
             if (authorizeResult is AuthorizationResult.Authorize && refreshToken != null) {
                 response.request().newBuilder()
-                    .header("Authorization", refreshToken)
+                    .header("Authorization", "Bearer $refreshToken")
                     .build()
             } else {
                 null

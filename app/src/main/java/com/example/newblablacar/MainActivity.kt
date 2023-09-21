@@ -15,20 +15,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.example.newblablacar.authentication.domain.AuthenticationRepository
 import com.example.newblablacar.authentication.utils.ACCESS_TOKEN_KEY
+import com.example.newblablacar.tripseach.domain.models.TripSearchRepository
 import com.example.newblablacar.ui.theme.NewBlablacarTheme
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.internal.InjectedFieldSignature
 import kotlinx.coroutines.launch
+import java.util.UUID
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var authenticationRepository: AuthenticationRepository
-
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
+    lateinit var tripSearchRepository: TripSearchRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +36,9 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     lifecycleScope.launch {
-                        val token = authenticationRepository.refreshToken()
-                        val accessToken = sharedPreferences.getString(ACCESS_TOKEN_KEY, "no token available")
-                        Toast.makeText(this@MainActivity, token.javaClass.name, Toast.LENGTH_SHORT).show()
-                        Toast.makeText(this@MainActivity, accessToken, Toast.LENGTH_LONG).show()
+                        val responseBody =
+                            tripSearchRepository.getTrips("Paris", "Toulouse", UUID.randomUUID().toString())
+                        Toast.makeText(this@MainActivity, responseBody.toString(), Toast.LENGTH_LONG).show()
                     }
                 }
             }

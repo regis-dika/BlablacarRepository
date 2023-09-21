@@ -1,4 +1,4 @@
-package com.example.newblablacar.tripseach.data.models.api
+package com.example.newblablacar.tripseach.data.api
 
 import com.example.newblablacar.tripseach.data.models.TripSearchParams
 import okhttp3.ResponseBody

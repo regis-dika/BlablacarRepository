@@ -10,6 +10,7 @@ fun BlalaTripsDto.toBlalaTripDomain(): List<BlablaTrip> {
             it.waypoints.get(0).mainText,
             it.waypoints.get(1).mainText,
             it.driver.displayName,
+            it.driver.thumbnail,
             it.priceDetails.price
         )
     }

@@ -26,7 +26,7 @@ class TripSearchAuthenticator @Inject constructor(
             val refreshToken = sharedPreferences.getString(ACCESS_TOKEN_KEY, null)
             //TODO handle error or failed step
             if (authorizeResult is AuthorizationResult.Authorize && refreshToken != null) {
-                response.request().newBuilder()
+                response.request.newBuilder()
                     .header("Authorization", "Bearer $refreshToken")
                     .build()
             } else {

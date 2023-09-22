@@ -6,21 +6,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.newblablacar.core.utils.resource.Error
 import com.example.newblablacar.core.utils.resource.Loading
 import com.example.newblablacar.core.utils.resource.Success
+import com.example.newblablacar.tripseach.presentation.components.LoadingScreen
 import com.example.newblablacar.tripseach.presentation.screens.address.BlablaTripAddressScreen
 import com.example.newblablacar.tripseach.presentation.screens.trips.BlablaTripListScreen
 import com.example.newblablacar.tripseach.presentation.screens.trips.BlablaTripListViewModel
@@ -61,7 +58,7 @@ class MainActivity : ComponentActivity() {
                             }
 
                             when (val results = state.value.trips) {
-                                is Loading -> CircularProgressIndicator(modifier = Modifier.fillMaxSize())
+                                is Loading -> LoadingScreen()
                                 is Success -> {
                                     BlablaTripListScreen(
                                         blablaTripList = results.value
@@ -78,28 +75,6 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun validatedAddresses(addresses: Pair<String, String>): Boolean {
-        if (addresses.first.isEmpty() || addresses.second.isEmpty()) {
-            return false
-        }
-        val pattern = "^([a-zA-Z\\u0080-\\u024F]+(?:. |-| |'))*[a-zA-Z\\u0080-\\u024F]*\$"
-        val isMatch1 = Regex(pattern).matches(addresses.first)
-        val isMatch2 = Regex(pattern).matches(addresses.second)
-        return isMatch1 && isMatch2
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NewBlablacarTheme {
-        Greeting("Android")
+        return !(addresses.first.isEmpty() || addresses.second.isEmpty())
     }
 }

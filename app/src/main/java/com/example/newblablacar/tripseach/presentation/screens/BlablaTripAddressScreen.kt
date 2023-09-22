@@ -14,13 +14,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BlablaTripAddressScreen(
-    fromAddress: String,
-    toAddress: String,
-    onGoClick: (() -> Unit)
+    navHostController: NavHostController
 ) {
     var fromAddress by rememberSaveable() {
         mutableStateOf("")
@@ -37,7 +36,7 @@ fun BlablaTripAddressScreen(
         OutlinedTextField(value = toAddress, onValueChange = {
             toAddress = it
         })
-        OutlinedIconButton(onClick = { onGoClick.invoke() }) {
+        OutlinedIconButton(onClick = { navHostController.navigate("triplist") }) {
             Icon(imageVector = Icons.Rounded.Send, contentDescription = "send")
         }
     }

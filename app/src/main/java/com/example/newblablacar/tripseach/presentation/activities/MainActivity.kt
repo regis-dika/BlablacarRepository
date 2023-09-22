@@ -44,7 +44,8 @@ class MainActivity : ComponentActivity() {
                         composable("tripaddress") {
                             BlablaTripAddressScreen() {
                                 navController.navigate("triplist")
-                                viewModel
+                                viewModel.updateFromToAddresses(it.first, it.second)
+                                viewModel.fetchTrip()
                             }
                         }
                         composable("triplist") {

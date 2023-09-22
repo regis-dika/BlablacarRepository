@@ -21,7 +21,7 @@ import androidx.navigation.NavHostController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BlablaTripAddressScreen(
-    onSearchClick: (() -> Unit)
+    onSearchClick: ((Pair<String, String>) -> Unit)
 ) {
     /**
      * Use rememberSaveable() to keep data across configuration changes
@@ -45,7 +45,7 @@ fun BlablaTripAddressScreen(
         OutlinedTextField(value = toAddress, onValueChange = {
             toAddress = it
         })
-        OutlinedIconButton(onClick = { onSearchClick.invoke() }) {
+        OutlinedIconButton(onClick = { onSearchClick.invoke(Pair(fromAddress, toAddress)) }) {
             Icon(imageVector = Icons.Rounded.Send, contentDescription = "send")
         }
     }

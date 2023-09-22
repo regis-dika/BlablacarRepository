@@ -3,9 +3,6 @@ package com.example.newblablacar.tripseach.presentation.screens.trips
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newblablacar.core.tripsearch.usescase.GetTripsSearchUseCase
-import com.example.newblablacar.core.utils.resource.Error
-import com.example.newblablacar.core.utils.resource.Loading
-import com.example.newblablacar.core.utils.resource.Success
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,6 +18,12 @@ class BlablaTripListViewModel @Inject constructor(
         BlablaTripListState()
     )
     val state get() = _state.asStateFlow()
+
+    fun updateFromToAddresses(from: String, to: String) {
+        _state.update {
+            it.copy(fromAddress = from, toAddress = to)
+        }
+    }
 
     fun fetchTrip() {
         viewModelScope.launch {

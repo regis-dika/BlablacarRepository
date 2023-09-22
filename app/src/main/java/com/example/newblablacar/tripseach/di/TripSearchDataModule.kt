@@ -29,6 +29,9 @@ object TripSearchDataModule {
         return retrofit.create(TripSearchApi::class.java)
     }
 
+    /**
+     * Add interceptor and authenticator in client
+     */
     @Singleton
     @Provides
     fun provideOkHttp(

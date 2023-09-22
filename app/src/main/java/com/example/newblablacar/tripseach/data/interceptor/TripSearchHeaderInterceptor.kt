@@ -2,6 +2,7 @@ package com.example.newblablacar.tripseach.data.interceptor
 
 import android.content.SharedPreferences
 import com.example.newblablacar.authentication.utils.ACCESS_TOKEN_KEY
+import com.example.newblablacar.authentication.utils.USER_AGENT
 import com.example.newblablacar.tripseach.utils.SEARCH_UUID
 import okhttp3.Interceptor
 import okhttp3.Interceptor.Chain
@@ -19,7 +20,7 @@ class TripSearchHeaderInterceptor @Inject constructor(
         val request = chain.request()
             .newBuilder()
             .header("Authorization", "Bearer $accessToken")
-            .header("User-Agent", "candidate-281-04ef6fba-7b69-4d74-b6fd-44890917084b")
+            .header("User-Agent", USER_AGENT)
             .header("X-Locale", "fr_FR")
             .header("X-Visitor-Id", SEARCH_UUID)
             .header("X-Currency", "EUR")

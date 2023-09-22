@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.newblablacar.tripseach.domain.models.BlablaTrip
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,7 +38,11 @@ fun BlablaTripCard(
                 Text(text = "Départ : ${blablaTrip.from}")
                 Text(text = "Arrivée : ${blablaTrip.to}")
                 Row {
-                    Text(text = "Prénom : ${blablaTrip.driverName}", fontWeight = FontWeight.SemiBold)
+                    AsyncImage(
+                        model = blablaTrip.driverPictureUrl,
+                        contentDescription = null,
+                    )
+                    Text(text = blablaTrip.driverName, fontWeight = FontWeight.SemiBold)
                 }
             }
             Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.CenterEnd) {

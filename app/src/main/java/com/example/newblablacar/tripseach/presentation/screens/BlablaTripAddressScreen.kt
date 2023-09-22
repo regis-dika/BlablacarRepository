@@ -1,5 +1,6 @@
 package com.example.newblablacar.tripseach.presentation.screens
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
@@ -13,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 
@@ -21,6 +23,9 @@ import androidx.navigation.NavHostController
 fun BlablaTripAddressScreen(
     navHostController: NavHostController
 ) {
+    /**
+     * Use rememberSaveable() to keep data across configuration changes
+     */
     var fromAddress by rememberSaveable() {
         mutableStateOf("")
     }
@@ -28,7 +33,11 @@ fun BlablaTripAddressScreen(
         mutableStateOf("")
     }
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         OutlinedTextField(value = fromAddress, onValueChange = {
             fromAddress = it
         })

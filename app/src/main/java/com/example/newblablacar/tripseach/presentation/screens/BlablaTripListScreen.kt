@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.newblablacar.tripseach.domain.models.BlablaTrip
 import com.example.newblablacar.tripseach.presentation.components.BlablaTripCard
@@ -14,7 +15,7 @@ import com.example.newblablacar.tripseach.presentation.components.BlablaTripCard
 fun BlablaTripListScreen(
     trips: List<BlablaTrip>,
 ) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
             items(trips) { trip ->
                 BlablaTripCard(blablaTrip = trip)

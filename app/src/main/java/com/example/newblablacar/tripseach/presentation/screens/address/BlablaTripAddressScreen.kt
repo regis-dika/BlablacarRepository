@@ -21,7 +21,7 @@ import androidx.navigation.NavHostController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BlablaTripAddressScreen(
-    navHostController: NavHostController
+    onSearchClick: (() -> Unit)
 ) {
     /**
      * Use rememberSaveable() to keep data across configuration changes
@@ -45,7 +45,7 @@ fun BlablaTripAddressScreen(
         OutlinedTextField(value = toAddress, onValueChange = {
             toAddress = it
         })
-        OutlinedIconButton(onClick = { navHostController.navigate("triplist") }) {
+        OutlinedIconButton(onClick = { onSearchClick.invoke() }) {
             Icon(imageVector = Icons.Rounded.Send, contentDescription = "send")
         }
     }

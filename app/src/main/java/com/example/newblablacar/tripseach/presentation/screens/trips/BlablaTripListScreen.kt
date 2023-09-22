@@ -8,15 +8,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.newblablacar.tripseach.domain.models.BlablaTrip
 import com.example.newblablacar.tripseach.presentation.components.BlablaTripCard
 
 @Composable
 fun BlablaTripListScreen(
-    blablaTripListState: BlablaTripListState
+    blablaTripList: List<BlablaTrip>
 ) {
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
-            items(blablaTripListState.trips) { trip ->
+            items(blablaTripList) { trip ->
                 BlablaTripCard(blablaTrip = trip)
             }
         }

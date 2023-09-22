@@ -24,7 +24,6 @@ class TripSearchRepositoryImpl @Inject constructor(
         emit(Loading())
         try {
             val result = tripSearchApi.tripSearch(from, to, BuildConfig.SEARCH_UUID, cursor)
-            //TODO mapper
             emit(Success(result.toBlalaTripDomain()))
         } catch (e: Exception) {
             emit(Error<List<BlablaTrip>>(e.toString()))

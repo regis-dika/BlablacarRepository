@@ -2,10 +2,9 @@ package com.example.newblablacar.authentication.di
 
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
+import com.example.newblablacar.BuildConfig
 import com.example.newblablacar.authentication.data.AuthenticationApi
-import com.example.newblablacar.authentication.utils.TOKEN_URL
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +20,7 @@ object AuthenticationModule {
     @Provides
     fun provideAuthenticationApi(moshi: Moshi): AuthenticationApi {
         val retrofit = Retrofit.Builder()
-            .baseUrl(TOKEN_URL)
+            .baseUrl(BuildConfig.TOKEN_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
         return retrofit.create(AuthenticationApi::class.java)

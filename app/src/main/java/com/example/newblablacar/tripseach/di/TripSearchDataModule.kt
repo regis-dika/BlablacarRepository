@@ -1,9 +1,9 @@
 package com.example.newblablacar.tripseach.di
 
+import com.example.newblablacar.BuildConfig
 import com.example.newblablacar.tripseach.data.authenticator.TripSearchAuthenticator
 import com.example.newblablacar.tripseach.data.interceptor.TripSearchHeaderInterceptor
 import com.example.newblablacar.tripseach.data.remote.TripSearchApi
-import com.example.newblablacar.tripseach.utils.TRIP_SEARCH_URL
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -22,7 +22,7 @@ object TripSearchDataModule {
     @Provides
     fun provideTripSearchApi(moshi: Moshi,okHttpClient: OkHttpClient): TripSearchApi {
         val retrofit = Retrofit.Builder()
-            .baseUrl(TRIP_SEARCH_URL)
+            .baseUrl(BuildConfig.TRIP_SEARCH_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()

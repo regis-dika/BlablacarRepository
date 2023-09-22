@@ -23,7 +23,17 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "TRIP_SEARCH_URL", "\"https://edge.blablacar.com/trip/\"")
+            buildConfigField("String", "SEARCH_UUID", "\"8401658C-E98D-457E-A087-34FA2D979D69\"")
+            buildConfigField("String", "TOKEN_URL", "\"https://edge.blablacar.com/\"")
+            buildConfigField("String", "USER_AGENT", "\"candidate-281-04ef6fba-7b69-4d74-b6fd-44890917084b\"")
+        }
         release {
+            buildConfigField("String", "TRIP_SEARCH_URL", "\"https://edge.blablacar.com/trip/\"")
+            buildConfigField("String", "SEARCH_UUID", "\"8401658C-E98D-457E-A087-34FA2D979D69\"")
+            buildConfigField("String", "TOKEN_URL", "\"https://edge.blablacar.com/\"")
+            buildConfigField("String", "USER_AGENT", "\"candidate-281-04ef6fba-7b69-4d74-b6fd-44890917084b\"")
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
@@ -37,6 +47,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"

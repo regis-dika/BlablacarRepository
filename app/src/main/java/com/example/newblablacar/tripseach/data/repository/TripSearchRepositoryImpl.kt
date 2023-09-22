@@ -3,6 +3,7 @@ package com.example.newblablacar.tripseach.data.repository
 import com.example.newblablacar.tripseach.data.remote.TripSearchApi
 import com.example.newblablacar.tripseach.domain.models.BlablaTrip
 import com.example.newblablacar.tripseach.domain.models.TripSearchRepository
+import com.example.newblablacar.tripseach.utils.SEARCH_UUID
 import javax.inject.Inject
 
 class TripSearchRepositoryImpl @Inject constructor(
@@ -11,11 +12,10 @@ class TripSearchRepositoryImpl @Inject constructor(
     override suspend fun getTrips(
         from: String,
         to: String,
-        searchId: String,
         cursor: String?
     ): Result<List<BlablaTrip>> {
         return try {
-            val result = tripSearchApi.tripSearch(from, to, searchId, cursor)
+            val result = tripSearchApi.tripSearch(from, to, SEARCH_UUID, cursor)
             Result.success(result.trips.map {
                 BlablaTrip(
                     it.waypoints.get(0).mainText,

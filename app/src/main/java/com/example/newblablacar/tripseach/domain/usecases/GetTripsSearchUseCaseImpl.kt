@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetTripsSearchUseCaseImpl@Inject constructor(
     private val tripSearchRepository: TripSearchRepository
 ) : GetTripsSearchUseCase{
-    override suspend fun invoke(from: String, to: String, searchId: String, cursor: String?): Result<List<BlablaTrip>> {
-        return tripSearchRepository.getTrips(from, to, searchId, cursor)
+    override suspend fun invoke(from: String, to: String, cursor: String?): Result<List<BlablaTrip>> {
+        return tripSearchRepository.getTrips(from, to, cursor)
     }
 }

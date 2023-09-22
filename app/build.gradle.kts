@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.newblablacar"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.newblablacar"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -76,4 +76,8 @@ dependencies {
     //Hilt
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+    //Navigation
+    val nav_version = "2.7.3"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 }

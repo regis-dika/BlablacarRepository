@@ -1,6 +1,5 @@
 package com.example.newblablacar.tripseach.presentation.activities
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -24,13 +23,9 @@ import com.example.newblablacar.tripseach.presentation.screens.trips.BlablaTripL
 import com.example.newblablacar.tripseach.presentation.screens.trips.BlablaTripListViewModel
 import com.example.newblablacar.ui.theme.NewBlablacarTheme
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

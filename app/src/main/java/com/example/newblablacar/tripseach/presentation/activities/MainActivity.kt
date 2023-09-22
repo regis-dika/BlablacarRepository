@@ -1,6 +1,5 @@
-package com.example.newblablacar
+package com.example.newblablacar.tripseach.presentation.activities
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -14,12 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
-import com.example.newblablacar.authentication.domain.AuthenticationRepository
-import com.example.newblablacar.authentication.utils.ACCESS_TOKEN_KEY
 import com.example.newblablacar.tripseach.domain.models.TripSearchRepository
 import com.example.newblablacar.ui.theme.NewBlablacarTheme
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.internal.InjectedFieldSignature
 import kotlinx.coroutines.launch
 import java.util.UUID
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.example.newblablacar.authentication.di
+package com.example.newblablacar.di
 
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
@@ -16,19 +16,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AuthenticationModule {
+object MoshiModule {
     @Singleton
     @Provides
-    fun provideAuthenticationApi(moshi: Moshi): AuthenticationApi {
-        val retrofit = Retrofit.Builder()
-            .baseUrl(TOKEN_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
-        return retrofit.create(AuthenticationApi::class.java)
-    }
-
-    @Singleton
-    @Provides
-    fun provideSharedPreference(application: Application) =
-        application.getSharedPreferences("sharedPrefs", MODE_PRIVATE)
+    fun provideMoshi() = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 }

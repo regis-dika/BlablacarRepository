@@ -2,6 +2,7 @@ package com.example.newblablacar
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -39,6 +40,7 @@ class MainActivity : ComponentActivity() {
                         val responseBody =
                             tripSearchRepository.getTrips("Paris", "Toulouse", UUID.randomUUID().toString())
                         Toast.makeText(this@MainActivity, responseBody.toString(), Toast.LENGTH_LONG).show()
+                        Log.d("RESPONSEBODYYYYYYY =>>>>>>>>", (String(responseBody.bytes())))
                     }
                 }
             }

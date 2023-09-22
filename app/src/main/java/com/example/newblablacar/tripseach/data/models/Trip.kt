@@ -2,12 +2,11 @@ package com.example.newblablacar.tripseach.data.models
 
 
 import com.squareup.moshi.Json
-
 data class Trip(
     @Json(name = "amenities")
     val amenities: List<Amenity>,
     @Json(name = "disabled_selection")
-    val disabledSelection: DisabledSelection,
+    val disabledSelection: DisabledSelection?,
     @Json(name = "driver")
     val driver: Driver,
     @Json(name = "highlights")

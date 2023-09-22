@@ -1,4 +1,4 @@
-package com.example.newblablacar.di
+package com.example.newblablacar.core.di
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

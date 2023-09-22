@@ -1,4 +1,4 @@
-package com.example.newblablacar.tripseach.presentation.screens
+package com.example.newblablacar.tripseach.presentation.screens.address
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

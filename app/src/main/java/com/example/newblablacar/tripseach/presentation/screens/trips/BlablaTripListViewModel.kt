@@ -20,9 +20,13 @@ class BlablaTripListViewModel @Inject constructor(
         )
     )
 
-    fun fetchTrip(searchUuid: String) {
+    init {
+        fetchTrip()
+    }
+
+    private fun fetchTrip() {
         viewModelScope.launch {
-            val result = getTripsSearchUseCase.invoke("Paris", "Toulouse", "8401658C-E98D-457E-A087-34FA2D979D694R", null)
+            val result = getTripsSearchUseCase.invoke("Paris", "Lyon", null)
             if (result.isSuccess) {
                 state.value = Result.success(BlablaTripListState(result.getOrDefault(listOf())))
             } else {

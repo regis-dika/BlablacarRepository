@@ -43,9 +43,14 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = "tripaddress") {
                         composable("tripaddress") {
                             BlablaTripAddressScreen() {
-                                navController.navigate("triplist")
-                                viewModel.updateFromToAddresses(it.first, it.second)
-                                viewModel.fetchTrip()
+                                if (validatedAddresses(it)) {
+                                    navController.navigate("triplist")
+                                    viewModel.updateFromToAddresses(it.first, it.second)
+                                    viewModel.fetchTrip()
+                                } else {
+                                    Toast.makeText(this@MainActivity, "Addresses not matching", Toast.LENGTH_LONG)
+                                        .show()
+                                }
                             }
                         }
                         composable("triplist") {
@@ -70,6 +75,16 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun validatedAddresses(addresses: Pair<String, String>): Boolean {
+        if (addresses.first.isEmpty() || addresses.second.isEmpty()) {
+            return false
+        }
+        val pattern = "^([a-zA-Z\\u0080-\\u024F]+(?:. |-| |'))*[a-zA-Z\\u0080-\\u024F]*\$"
+        val isMatch1 = Regex(pattern).matches(addresses.first)
+        val isMatch2 = Regex(pattern).matches(addresses.second)
+        return isMatch1 && isMatch2
     }
 }
 

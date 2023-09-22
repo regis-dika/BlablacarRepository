@@ -4,6 +4,7 @@ import com.example.newblablacar.core.utils.resource.Error
 import com.example.newblablacar.core.utils.resource.Loading
 import com.example.newblablacar.core.utils.resource.Resource
 import com.example.newblablacar.core.utils.resource.Success
+import com.example.newblablacar.tripseach.data.helpers.toBlalaTripDomain
 import com.example.newblablacar.tripseach.data.remote.TripSearchApi
 import com.example.newblablacar.tripseach.domain.models.BlablaTrip
 import com.example.newblablacar.tripseach.domain.models.TripSearchRepository
@@ -24,14 +25,7 @@ class TripSearchRepositoryImpl @Inject constructor(
         try {
             val result = tripSearchApi.tripSearch(from, to, SEARCH_UUID, cursor)
             //TODO mapper
-            emit(Success(result.trips.map {
-                BlablaTrip(
-                    it.waypoints.get(0).mainText,
-                    it.waypoints.get(1).mainText,
-                    it.driver.displayName,
-                    it.priceDetails.price
-                )
-            }))
+            emit(Success(result.toBlalaTripDomain()))
         } catch (e: Exception) {
             emit(Error<List<BlablaTrip>>(e.toString()))
         }
